@@ -19,7 +19,27 @@ let intervalTime = 0;
 let interval = 0;
 
 
+document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("keyup", control);
+})
+
+
 up.addEventListener("click", () => (direction = -width));
 bottom.addEventListener("click", () => (direction = +width));
 left.addEventListener("click", () => (direction = -1));
 right.addEventListener("click", () => (direction = 1));
+
+
+function control(event) {
+    console.log(event.key);
+    if (event.key === "ArrowRight") {
+      direction = 1; 
+    } else if (event.key === "ArrowUp") {
+      direction = -width;
+    } else if (event.key === "ArrowLeft") {
+      direction = -1; 
+    } else if (event.key === "ArrowDown") {
+      direction = +width; 
+    }
+  }
+  
