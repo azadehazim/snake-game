@@ -21,6 +21,7 @@ let interval = 0;
 
 document.addEventListener("DOMContentLoaded", function(){
     document.addEventListener("keyup", control);
+    createBoard();
 })
 
 
@@ -41,5 +42,20 @@ function control(event) {
     } else if (event.key === "ArrowDown") {
       direction = +width; 
     }
+}
+
+function createBoard() {
+    popup.style.display = "none";
+    for (let i = 0; i < 100; i++) {
+      let div = document.createElement("div");
+      if((i%2===0 && Math.floor((i/10))%2===0) || (i%2===1 && Math.floor((i/10))%2===1)){
+        div.style.backgroundColor="green";
+      }
+      else{
+        div.style.backgroundColor="greenYellow";
+      }
+      grid.appendChild(div);
+    }
   }
+  
   
