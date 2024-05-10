@@ -19,3 +19,7 @@ let intervalTime = 0;
 let interval = 0;
 
 
+up.addEventListener("click", () => (direction = -width));
+bottom.addEventListener("click", () => (direction = +width));
+left.addEventListener("click", () => (direction = -1));
+right.addEventListener("click", () => (direction = 1));
