@@ -94,8 +94,8 @@ function moveOutcome() {
   console.log(checkForHits(squares));
   if (checkForHits(squares)) {
     alert("you hit something");
-    popup.style.display = "flex";
-    clearScore();
+    //popup.style.display = "flex";
+    //clearScore();
     return clearInterval(interval);
   } else {
     moveSnake(squares);
@@ -129,5 +129,13 @@ function eatApple(squares, tail) {
     intervalTime = intervalTime * speed;
     interval = setInterval(moveOutcome, intervalTime);
   }
+}
+
+function moveSnake(squares) {
+  let tail = currentSnake.pop();
+  squares[tail].classList.remove("snake");
+  currentSnake.unshift(currentSnake[0] + direction);
+  eatApple(squares, tail);
+  squares[currentSnake[0]].classList.add("snake");
 }
 
