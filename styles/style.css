@@ -49,7 +49,7 @@ main{
 
   
 .apple {
-  background-image: url(./pic/apple.jpg);
+  background-image: url(../pic/apple.jpg);
   background-size: cover;
   background-color: green;
 }

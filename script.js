@@ -19,9 +19,18 @@ let intervalTime = 0;
 let interval = 0;
 
 
+
+
 document.addEventListener("DOMContentLoaded", function(){
     document.addEventListener("keyup", control);
     createBoard();
+    startGame();
+
+    // //squares[1].classList.add("snake");
+    // let squares=document.querySelectorAll(".grid div");
+    // console.log(squares);
+    // currentSnake.forEach((item) => squares[item].classList.add("snake"));
+    // randomApple(squares); 
 })
 
 
@@ -56,7 +65,11 @@ function createBoard() {
       }
       grid.appendChild(div);
     }
+
 }
+
+
+
   
 function randomApple(squares) {
     do {
@@ -64,4 +77,18 @@ function randomApple(squares) {
     } while (squares[appleIndex].classList.contains("snake"));
     squares[appleIndex].classList.add("apple");
 }
+
+
+function startGame() {
+  let squares = document.querySelectorAll(".grid div");
+  randomApple(squares);
+  //direction = 1;
+  scoreDisplay.innerHTML = score;
+  //intervalTime = 1000;
+  //currentSnake = [2, 1, 0];
+  //currentIndex = 0;
+  currentSnake.forEach((item) => squares[item].classList.add("snake"));
+  interval = setInterval(moveOutcome, intervalTime);
+}
+
 
