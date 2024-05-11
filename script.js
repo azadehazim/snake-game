@@ -94,8 +94,8 @@ function moveOutcome() {
   console.log(checkForHits(squares));
   if (checkForHits(squares)) {
     alert("you hit something");
-    //popup.style.display = "flex";
-    //clearScore();
+    popup.style.display = "flex";
+    clearScore();
     return clearInterval(interval);
   } else {
     moveSnake(squares);
@@ -138,4 +138,27 @@ function moveSnake(squares) {
   eatApple(squares, tail);
   squares[currentSnake[0]].classList.add("snake");
 }
+
+function replay() {
+  grid.innerHTML = "";
+  createBoard();
+  startGame();
+  popup.style.display = "none";
+}
+
+let timesPlayed=0;
+function clearScore(){
+  timesPlayed++;
+  const scoreTable=document.getElementById("scoreTable")
+  const tr=document.createElement("tr");
+  const td1=document.createElement("td");
+  td1.innerText=`Play number ${timesPlayed} score:`
+  const td2=document.createElement("td");
+  td2.innerText=score;
+  tr.append(td1,td2);
+  scoreTable.appendChild(tr);
+  score=0;
+  scoreDisplay.innerText = score;
+}
+
 
