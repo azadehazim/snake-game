@@ -19,8 +19,6 @@ let intervalTime = 0;
 let interval = 0;
 
 
-
-
 document.addEventListener("DOMContentLoaded", function(){
     document.addEventListener("keyup", control);
     createBoard();
@@ -35,18 +33,6 @@ left.addEventListener("click", () => (direction = -1));
 right.addEventListener("click", () => (direction = 1));
 
 
-function control(event) {
-    console.log(event.key);
-    if (event.key === "ArrowRight") {
-      direction = 1; 
-    } else if (event.key === "ArrowUp") {
-      direction = -width;
-    } else if (event.key === "ArrowLeft") {
-      direction = -1; 
-    } else if (event.key === "ArrowDown") {
-      direction = +width; 
-    }
-}
 
 function createBoard() {
     popup.style.display = "none";
@@ -74,18 +60,17 @@ function randomApple(squares) {
 
 function startGame() {
   let squares = document.querySelectorAll(".grid div");
-  randomApple(squares);
   direction = 1;
   scoreDisplay.innerHTML = score;
   intervalTime = 1000;
   currentSnake = [2, 1, 0];
   currentSnake.forEach((item) => squares[item].classList.add("snake"));
+  randomApple(squares);
   interval = setInterval(moveOutcome, intervalTime);
 }
 
 function moveOutcome() {
   let squares = document.querySelectorAll(".grid div");
-  console.log(checkForHits(squares));
   if (checkForHits(squares)) {
     alert("you hit something");
     popup.style.display = "flex";
@@ -133,7 +118,7 @@ function moveSnake(squares) {
   squares[currentSnake[0]].classList.add("snake");
 }
 
-function replay() {
+function replay(){
   grid.innerHTML = "";
   createBoard();
   startGame();
@@ -153,6 +138,54 @@ function clearScore(){
   scoreTable.appendChild(tr);
   score=0;
   scoreDisplay.innerText = score;
+}
+
+
+function control(event){
+  if (event.key === "ArrowRight") {
+    direction = 1;
+    document.getElementById("left").style.opacity="1";
+    document.getElementById("top").style.opacity="1";
+    document.getElementById("bottom").style.opacity="1";
+    document.getElementById("right").style.opacity="0.7"; 
+    document.getElementById("right").style.backgroundColor="black";
+    document.getElementById("left").style.backgroundColor="green";
+    document.getElementById("top").style.backgroundColor="green";
+    document.getElementById("bottom").style.backgroundColor="green";
+
+  } else if (event.key === "ArrowUp") {
+    direction = -width;
+    document.getElementById("left").style.opacity="1";
+    document.getElementById("top").style.opacity="0.7";
+    document.getElementById("bottom").style.opacity="1";
+    document.getElementById("right").style.opacity="1"; 
+    document.getElementById("right").style.backgroundColor="green";
+    document.getElementById("left").style.backgroundColor="green";
+    document.getElementById("top").style.backgroundColor="black";
+    document.getElementById("bottom").style.backgroundColor="green";
+
+  } else if (event.key === "ArrowLeft") {
+    direction = -1;
+    document.getElementById("left").style.opacity="0.7";
+    document.getElementById("top").style.opacity="1";
+    document.getElementById("bottom").style.opacity="1";
+    document.getElementById("right").style.opacity="1"; 
+    document.getElementById("right").style.backgroundColor="green";
+    document.getElementById("left").style.backgroundColor="black";
+    document.getElementById("top").style.backgroundColor="green";
+    document.getElementById("bottom").style.backgroundColor="green";
+
+  } else if (event.key === "ArrowDown") {
+    direction = +width;
+    document.getElementById("left").style.opacity="1";
+    document.getElementById("top").style.opacity="1";
+    document.getElementById("bottom").style.opacity="0.7";
+    document.getElementById("right").style.opacity="1";  
+    document.getElementById("right").style.backgroundColor="green";
+    document.getElementById("left").style.backgroundColor="green";
+    document.getElementById("top").style.backgroundColor="green";
+    document.getElementById("bottom").style.backgroundColor="black";
+  }
 }
 
 
