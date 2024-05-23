@@ -33,6 +33,18 @@ left.addEventListener("click", () => (direction = -1));
 right.addEventListener("click", () => (direction = 1));
 
 
+function control(event){
+  if (event.key === "ArrowRight") {
+    direction = 1;
+  } else if (event.key === "ArrowUp") {
+    direction = -width;
+  } else if (event.key === "ArrowLeft") {
+    direction = -1;
+  } else if (event.key === "ArrowDown") {
+    direction = +width;
+  }
+}
+
 
 function createBoard() {
     popup.style.display = "none";
@@ -116,6 +128,7 @@ function moveSnake(squares) {
   currentSnake.unshift(currentSnake[0] + direction);
   eatApple(squares, tail);
   squares[currentSnake[0]].classList.add("snake");
+  buttonHandler();
 }
 
 function replay(){
@@ -141,9 +154,8 @@ function clearScore(){
 }
 
 
-function control(event){
-  if (event.key === "ArrowRight") {
-    direction = 1;
+function buttonHandler(){
+  if(direction===1){
     document.getElementById("left").style.opacity="1";
     document.getElementById("top").style.opacity="1";
     document.getElementById("bottom").style.opacity="1";
@@ -152,31 +164,8 @@ function control(event){
     document.getElementById("left").style.backgroundColor="green";
     document.getElementById("top").style.backgroundColor="green";
     document.getElementById("bottom").style.backgroundColor="green";
-
-  } else if (event.key === "ArrowUp") {
-    direction = -width;
-    document.getElementById("left").style.opacity="1";
-    document.getElementById("top").style.opacity="0.7";
-    document.getElementById("bottom").style.opacity="1";
-    document.getElementById("right").style.opacity="1"; 
-    document.getElementById("right").style.backgroundColor="green";
-    document.getElementById("left").style.backgroundColor="green";
-    document.getElementById("top").style.backgroundColor="black";
-    document.getElementById("bottom").style.backgroundColor="green";
-
-  } else if (event.key === "ArrowLeft") {
-    direction = -1;
-    document.getElementById("left").style.opacity="0.7";
-    document.getElementById("top").style.opacity="1";
-    document.getElementById("bottom").style.opacity="1";
-    document.getElementById("right").style.opacity="1"; 
-    document.getElementById("right").style.backgroundColor="green";
-    document.getElementById("left").style.backgroundColor="black";
-    document.getElementById("top").style.backgroundColor="green";
-    document.getElementById("bottom").style.backgroundColor="green";
-
-  } else if (event.key === "ArrowDown") {
-    direction = +width;
+  }
+  else if(direction===+width){
     document.getElementById("left").style.opacity="1";
     document.getElementById("top").style.opacity="1";
     document.getElementById("bottom").style.opacity="0.7";
@@ -186,6 +175,24 @@ function control(event){
     document.getElementById("top").style.backgroundColor="green";
     document.getElementById("bottom").style.backgroundColor="black";
   }
+  else if(direction===-1){
+    document.getElementById("left").style.opacity="0.7";
+    document.getElementById("top").style.opacity="1";
+    document.getElementById("bottom").style.opacity="1";
+    document.getElementById("right").style.opacity="1"; 
+    document.getElementById("right").style.backgroundColor="green";
+    document.getElementById("left").style.backgroundColor="black";
+    document.getElementById("top").style.backgroundColor="green";
+    document.getElementById("bottom").style.backgroundColor="green";
+  }
+  else if(direction===-width){
+    document.getElementById("left").style.opacity="1";
+    document.getElementById("top").style.opacity="0.7";
+    document.getElementById("bottom").style.opacity="1";
+    document.getElementById("right").style.opacity="1"; 
+    document.getElementById("right").style.backgroundColor="green";
+    document.getElementById("left").style.backgroundColor="green";
+    document.getElementById("top").style.backgroundColor="black";
+    document.getElementById("bottom").style.backgroundColor="green";
+  }
 }
-
-
